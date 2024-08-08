@@ -5,7 +5,6 @@ import Accomodation from "./pages/Accomodation/Accomodation";
 import Schedule from "./pages/Schedule/Schedule";
 import GallerySection from "./pages/Gallery/GalleyPage";
 import PrivacyPolicy from "./pages/PrivacyPolicy/PrivcyPolicyPage";
-import AcsicMembers from "./pages/Members/Members";
 import { Toaster } from "react-hot-toast";
 import NotFoundPage from "./components/NotFound";
 import History from "./pages/History/History";
@@ -22,6 +21,7 @@ import ChangePassword from "./pages/Changepassword/ChangePassword.jsx";
 import ParticipantAttendance from "./pages/adminDashboard/Attendance.jsx";
 import UnderMaintenance from "./pages/UnderMaintainance/UnderMaintainance.jsx";
 import AboutASIAN from "./pages/AboutASIAN/Aboutsummit.jsx";
+import SummitMembers from "./pages/Members/Members";
 
 function App() {
   return (
@@ -35,7 +35,7 @@ function App() {
         <Route path="/schedulenew" element={<Schedule />} />{" "}
         <Route path="/gallery" element={<GallerySection />} />{" "}
         <Route path="/privacy-policy" element={<PrivacyPolicy />} />{" "}
-        <Route path="/memebersacsic" element={<AcsicMembers />} />{" "}
+        <Route path="/memebersasian" element={<SummitMembers />} />{" "}
         <Route path="/aboutsummit" element={<AboutASIAN />} />{" "}
         <Route path="/history" element={<History />} />{" "}
         <Route path="/register" element={<Registrations />} />{" "}

@@ -65,7 +65,7 @@ const Navbar = () => {
           href="/homepage"
           className="flex items-center space-x-3 rtl:space-x-reverse"
         >
-          <img src={Logo} className="h-[80px]" alt="ACSIC Logo" />
+          <img src={Logo} className="h-[80px]" alt="ASIAN Logo" />
         </a>
 
         <button
@@ -168,7 +168,7 @@ const Navbar = () => {
                 </li>
                 <li>
                   <Link
-                    to="/memebersacsic"
+                    to="/memebersasian"
                     className="block py-2 px-4 hover:bg-green-100 flex items-center space-x-2"
                   >
                     <span>Our Members</span>

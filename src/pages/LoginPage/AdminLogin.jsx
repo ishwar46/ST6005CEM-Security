@@ -6,7 +6,7 @@ import { useNavigate } from "react-router-dom";
 import useDocumentTitle from "../../components/DocTitle";
 
 const AdminLogin = () => {
-  useDocumentTitle("Admin Login - ACSIC Conference ");
+  useDocumentTitle("Admin Login - ASIAN Conference ");
 
   useEffect(() => {
     const logoutSuccessMessage = localStorage.getItem("logoutSuccessMessage");
@@ -68,7 +68,7 @@ const AdminLogin = () => {
       {/* <Toaster position="top-center" /> */}
       <section class="bg-gray-50">
         <div class="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
-          <img src={Logo} className="h-[200px]" alt="ACSIC Logo" />
+          <img src={Logo} className="h-[200px]" alt="ASIAN Logo" />
 
           <div class="w-full bg-white rounded-lg shadow md:mt-0 sm:max-w-md xl:p-0">
             <div class="p-6 space-y-4 md:space-y-6 sm:p-8">
