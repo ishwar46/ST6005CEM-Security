@@ -1,0 +1,31 @@
+const institutions = [
+  { id: 1, name: "Mahuli Laghubitta Bittiya Sanstha Ltd." },
+  { id: 2, name: "Nirdhan Utthan Bank Limited" },
+  { id: 3, name: "Mukti Microfinance Bittiya Sanstha Ltd." },
+  { id: 4, name: "Chhimek Microfinance Development Bank" },
+  { id: 5, name: "Swabalamban Laghubitta Bittiya Sanstha Ltd." },
+  { id: 6, name: "Forward Microfinance Laghubitta Bittiya Sanstha Ltd." },
+  { id: 7, name: "Mero Microfinance Bittiya Sanstha Ltd." },
+  { id: 8, name: "Deprosc Laghubitta Bittiya Sanstha Ltd." },
+  { id: 9, name: "NMB Microfinance Bittiya Sanstha Ltd." },
+  { id: 10, name: "NIC Asia Bank" },
+  { id: 11, name: "Bouddha Gramin Microfinance" },
+  { id: 12, name: "Grameen Bank" },
+  { id: 13, name: "BRAC" },
+  { id: 14, name: "SKS Microfinance" },
+  { id: 15, name: "Bandhan Bank" },
+  { id: 16, name: "Card Bank Inc." },
+  { id: 17, name: "Berendina Micro Investments Company Ltd." },
+  { id: 18, name: "Siam Microfinance" },
+  { id: 19, name: "Bank Rakyat Indonesia (BRI)" },
+  { id: 20, name: "Kashf Foundation" },
+  { id: 21, name: "TYM Fund" },
+  { id: 22, name: "AMK Microfinance Institution Plc." },
+  { id: 23, name: "Pact Global Microfinance Fund" },
+  {
+    id: 24,
+    name: "China Foundation for Poverty Alleviation (CFPA) Microfinance",
+  },
+];
+
+export default institutions;
