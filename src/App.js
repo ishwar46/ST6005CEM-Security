@@ -2,7 +2,6 @@ import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
 import CeoMessage from "./pages/CEOMessage/CeoMessage";
 import HomePage from "./pages/MainHome/HomePage";
 import Accomodation from "./pages/Accomodation/Accomodation";
-import Speakers from "./components/Spakers";
 import Schedule from "./pages/Schedule/Schedule";
 import GallerySection from "./pages/Gallery/GalleyPage";
 import PrivacyPolicy from "./pages/PrivacyPolicy/PrivcyPolicyPage";
@@ -33,7 +32,6 @@ function App() {
         <Route path="/homepage" element={<HomePage />} />{" "}
         <Route path="/ceomessage" element={<CeoMessage />} />{" "}
         <Route path="/accomodation" element={<Accomodation />} />{" "}
-        <Route path="/speakers" element={<Speakers />} />{" "}
         <Route path="/schedulenew" element={<Schedule />} />{" "}
         <Route path="/gallery" element={<GallerySection />} />{" "}
         <Route path="/privacy-policy" element={<PrivacyPolicy />} />{" "}
