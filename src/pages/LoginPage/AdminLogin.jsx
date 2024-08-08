@@ -6,120 +6,107 @@ import { useNavigate } from "react-router-dom";
 import useDocumentTitle from "../../components/DocTitle";
 
 const AdminLogin = () => {
-  useDocumentTitle("Admin Login - ASIAN Conference ");
-
-  useEffect(() => {
-    const logoutSuccessMessage = localStorage.getItem("logoutSuccessMessage");
-    if (logoutSuccessMessage) {
-      toast.success(logoutSuccessMessage, {
-        duration: 3000,
-        position: "top-right",
-      });
-      localStorage.removeItem("logoutSuccessMessage");
-    }
-  }, []);
+  useDocumentTitle("Admin Login - ASIAN Conference");
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const navigator = useNavigate();
-  const handelEmail = (e) => {
-    setEmail(e.target.value);
-  };
-  const handelPassword = (e) => {
-    setPassword(e.target.value);
-  };
-  const handleSubmit = (e) => {
+  const [lockDuration, setLockDuration] = useState(null);
+  const [remainingAttempts, setRemainingAttempts] = useState(null);
+  const navigate = useNavigate();
+
+  const handleEmailChange = (e) => setEmail(e.target.value);
+  const handlePasswordChange = (e) => setPassword(e.target.value);
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(email, password);
-    const data = {
-      email: email,
-      password: password,
-    };
-    //  send data to backend
-    adminLoginApi(data)
-      .then((res) => {
-        if (res.data.success) {
-          toast.success(res.data.message);
-          // save token and user data in local storage
-          localStorage.setItem("token", res.data.token);
-          localStorage.setItem("user", JSON.stringify(res.data.admin));
-          // Check if user is admin and navigate to admin dashboard
-          if (res.data.admin.isAdmin) {
-            navigator("/admindashboard");
-          }
-        } else {
-          toast.error(res.data.message);
-        }
-      })
-      .catch((err) => {
-        console.log(err);
-        let errorMessage = "Internal server error";
-        if (err.response && err.response.data && err.response.data.message) {
-          errorMessage = err.response.data.message;
-        } else if (err.message) {
-          errorMessage = err.message;
-        }
-        toast.error(errorMessage);
-      });
+    try {
+      const response = await adminLoginApi({ email, password });
+      const res = response.data;
+      if (res.success) {
+        toast.success(res.message);
+        localStorage.setItem("token", res.token);
+        localStorage.setItem("user", JSON.stringify(res.admin));
+        navigate("/admindashboard");
+      } else {
+        toast.error(res.error);
+        setRemainingAttempts(res.lockDuration ? 0 : res.remainingAttempts);
+        setLockDuration(res.lockDuration);
+      }
+    } catch (err) {
+      const errorMessage =
+        err.response?.data?.error || err.message || "Internal server error";
+      toast.error(errorMessage);
+      if (err.response?.data) {
+        setRemainingAttempts(
+          err.response.data.lockDuration
+            ? 0
+            : err.response.data.remainingAttempts
+        );
+        setLockDuration(err.response.data.lockDuration);
+      }
+    }
   };
+
+  useEffect(() => {
+    let timer = null;
+    if (lockDuration > 0) {
+      timer = setInterval(() => {
+        setLockDuration((prevDuration) => prevDuration - 1);
+      }, 1000);
+    } else if (lockDuration === 0) {
+      clearInterval(timer);
+      setLockDuration(null);
+    }
+    return () => clearInterval(timer);
+  }, [lockDuration]);
 
   return (
     <>
-      {/* <Toaster position="top-center" /> */}
-      <section class="bg-gray-50">
-        <div class="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
-          <img src={Logo} className="h-[200px]" alt="ASIAN Logo" />
-
-          <div class="w-full bg-white rounded-lg shadow md:mt-0 sm:max-w-md xl:p-0">
-            <div class="p-6 space-y-4 md:space-y-6 sm:p-8">
-              <h1 class="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl text-center">
-                Admin Log in
-              </h1>
-              <form class="space-y-4 md:space-y-6" action="#">
-                <div>
-                  <label
-                    for="email"
-                    class="block mb-2 text-lg font-medium text-gray-900"
-                  >
-                    Enter your email
-                  </label>
-                  <input
-                    onChange={handelEmail}
-                    type="email"
-                    name="email"
-                    id="email"
-                    class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5"
-                    placeholder="name@company.com"
-                    required=""
-                  />
-                </div>
-                <div>
-                  <label
-                    for="password"
-                    class="block mb-2 text-lg font-medium text-gray-900"
-                  >
-                    Password
-                  </label>
-                  <input
-                    onChange={handelPassword}
-                    type="password"
-                    name="password"
-                    id="password"
-                    placeholder="••••••••"
-                    class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5"
-                    required=""
-                  />
-                </div>
-
-                <button
-                  onClick={handleSubmit}
-                  type="submit"
-                  class="w-full text-white bg-green-600 hover:bg-blue-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center"
-                >
-                  Sign in
-                </button>
-              </form>
-            </div>
+      <section className="bg-gradient-to-r from-green-400 to-blue-500 min-h-screen flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
+        <div className="max-w-md w-full space-y-8">
+          <div className="flex justify-center">
+            <img src={Logo} className="h-32 w-32" alt="ASIAN Logo" />
+          </div>
+          <div className="bg-white shadow-lg rounded-lg p-10 space-y-6">
+            <h2 className="text-center text-3xl font-extrabold text-gray-900">
+              Admin Login
+            </h2>
+            <form className="mt-8 space-y-6" onSubmit={handleSubmit}>
+              <input
+                id="email"
+                type="email"
+                required
+                className="appearance-none rounded-md relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-blue-500 focus:border-blue-500 focus:z-10 sm:text-sm"
+                placeholder="Email address"
+                value={email}
+                onChange={handleEmailChange}
+              />
+              <input
+                id="password"
+                type="password"
+                required
+                className="appearance-none rounded-md relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-blue-500 focus:border-blue-500 focus:z-10 sm:text-sm"
+                placeholder="Password"
+                value={password}
+                onChange={handlePasswordChange}
+              />
+              {remainingAttempts !== null && (
+                <p className="text-red-500 text-center">
+                  Attempts remaining: {remainingAttempts}
+                </p>
+              )}
+              {lockDuration !== null && (
+                <p className="text-red-500 text-center">
+                  Locked for {lockDuration} seconds
+                </p>
+              )}
+              <button
+                type="submit"
+                className="group relative w-full flex justify-center py-3 px-4 border border-transparent text-lg font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
+              >
+                Sign in
+              </button>
+            </form>
           </div>
         </div>
       </section>
