@@ -1,6 +1,11 @@
 import React, { useState } from "react";
-import Wasapp from "../assets/images/M (2).png";
-import { FaFacebook, FaTwitter, FaLinkedin, FaInstagram } from "react-icons/fa";
+import {
+  FaFacebook,
+  FaTwitter,
+  FaLinkedin,
+  FaInstagram,
+  FaWhatsapp,
+} from "react-icons/fa";
 import SuccessDialog from "./SuccessDialog";
 import AlertDialog from "./AlertDialog";
 import { addSubscriberApi } from "../apis/Api";
@@ -64,7 +69,13 @@ const Footer = () => {
             </div>
             <div className="font-bold text-white">Kathmandu, Nepal</div>
             <div className="flex gap-2 items-center">
-              <img src={Wasapp} alt="WhatsApp" className="h-8" />
+              <a
+                href="https://whatsapp.com"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <FaWhatsapp className="h-6 w-6 hover:text-blue-500" />
+              </a>
               <div className="text-white">
                 <span className="text-green-500 cursor-pointer">
                   +977-9804704028
