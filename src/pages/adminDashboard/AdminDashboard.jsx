@@ -86,7 +86,7 @@ const AdminDashboard = () => {
                     >
                       <img
                         className="w-10 h-10 rounded-full"
-                        src="https://dcgf.gov.np/front/nep/images/deposit-and-credit-guarantee-fund-small-logo.jpg"
+                        src="https://mslbsl.com.np/images/logo.png"
                         alt="test"
                       />
                     </button>
@@ -298,62 +298,7 @@ const AdminDashboard = () => {
                   <span className="ml-3">Attendance</span>
                 </button>
               </li>
-              <li>
-                <button
-                  onClick={() => handleContainerChange("generateinvoice")}
-                  className={`w-[100%] flex items-center p-2 text-gray-900 rounded-r-lg hover:bg-blue-300 group ${
-                    activeContainer === "generateinvoice"
-                      ? "bg-blue-200 text-[#3051A0] border-l-4 border-[#3051A0]"
-                      : ""
-                  }`}
-                >
-                  <span className="w-5 h-5 text-gray-500 transition duration-75 group-hover:text-[#3051A0]">
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      viewBox="0 0 24 24"
-                      fill="currentColor"
-                      class="w-6 h-6"
-                    >
-                      <path
-                        fill-rule="evenodd"
-                        d="M1.5 6a2.25 2.25 0 0 1 2.25-2.25h16.5A2.25 2.25 0 0 1 22.5 6v12a2.25 2.25 0 0 1-2.25 2.25H3.75A2.25 2.25 0 0 1 1.5 18V6ZM3 16.06V18c0 .414.336.75.75.75h16.5A.75.75 0 0 0 21 18v-1.94l-2.69-2.689a1.5 1.5 0 0 0-2.12 0l-.88.879.97.97a.75.75 0 1 1-1.06 1.06l-5.16-5.159a1.5 1.5 0 0 0-2.12 0L3 16.061Zm10.125-7.81a1.125 1.125 0 1 1 2.25 0 1.125 1.125 0 0 1-2.25 0Z"
-                        clip-rule="evenodd"
-                      />
-                    </svg>
-                  </span>
-                  <span className="ms-3 lg:block md:hidden">
-                    Generate Invoice
-                  </span>
-                </button>
-              </li>
-              <li>
-                <button
-                  onClick={() => handleContainerChange("generatereceipt")}
-                  className={`w-[100%] flex items-center p-2 text-gray-900 rounded-r-lg hover:bg-blue-300 group ${
-                    activeContainer === "generatereceipt"
-                      ? "bg-blue-200 text-[#3051A0] border-l-4 border-[#3051A0]"
-                      : ""
-                  }`}
-                >
-                  <span className="w-5 h-5 text-gray-500 transition duration-75 group-hover:text-[#3051A0]">
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      viewBox="0 0 24 24"
-                      fill="currentColor"
-                      class="w-6 h-6"
-                    >
-                      <path
-                        fill-rule="evenodd"
-                        d="M1.5 6a2.25 2.25 0 0 1 2.25-2.25h16.5A2.25 2.25 0 0 1 22.5 6v12a2.25 2.25 0 0 1-2.25 2.25H3.75A2.25 2.25 0 0 1 1.5 18V6ZM3 16.06V18c0 .414.336.75.75.75h16.5A.75.75 0 0 0 21 18v-1.94l-2.69-2.689a1.5 1.5 0 0 0-2.12 0l-.88.879.97.97a.75.75 0 1 1-1.06 1.06l-5.16-5.159a1.5 1.5 0 0 0-2.12 0L3 16.061Zm10.125-7.81a1.125 1.125 0 1 1 2.25 0 1.125 1.125 0 0 1-2.25 0Z"
-                        clip-rule="evenodd"
-                      />
-                    </svg>
-                  </span>
-                  <span className="ms-3 lg:block md:hidden">
-                    Generate Receipt
-                  </span>
-                </button>
-              </li>
+
               <li>
                 <button
                   onClick={() => handleContainerChange("queries")}

@@ -489,7 +489,7 @@ const Registrations = () => {
         setAlertDialogDescription(
           err.response && err.response.data && err.response.data.message
             ? err.response.data.message
-            : "Something went wrong! Please contact us at secretariat@dcgf.gov.np"
+            : "Something went wrong! Please contact us at message@asianconference.com"
         );
         setAlertDialogOpen(true);
       });

@@ -2,7 +2,8 @@ import axios from "axios";
 
 // Axios instance configuration
 const Api = axios.create({
-  baseURL: "http://localhost:5000",
+  // baseURL: "http://localhost:5000",
+  baseURL: "https://asian-api.onrender.com/",
   withCredentials: true,
   headers: {
     "Content-Type": "application/json",
