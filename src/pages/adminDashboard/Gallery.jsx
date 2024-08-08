@@ -213,7 +213,7 @@ const Gallery = () => {
                 <img
                   src={
                     image.image
-                      ? `https://api.acsicnepal.com/${image.image}`
+                      ? `http://localhost:5000/${image.image}`
                       : "https://via.placeholder.com/100"
                   }
                   alt="Gallery"

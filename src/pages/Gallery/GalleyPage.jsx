@@ -61,7 +61,7 @@ const GallerySection = () => {
                 className="block w-full h-auto object-cover rounded-lg transition duration-500 transform hover:scale-110"
                 src={
                   image.image
-                    ? `https://api.acsicnepal.com/${image.image}`
+                    ? `http://localhost:5000/${image.image}`
                     : "https://via.placeholder.com/100"
                 }
                 style={{ aspectRatio: "1 / 1" }}
