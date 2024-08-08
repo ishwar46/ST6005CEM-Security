@@ -1,0 +1,79 @@
+{
+    "History": [{
+            "number": "1st",
+            "date": "October 17-18, 1988",
+            "host_country": "Japan",
+            "details": "Establishing the Foundation for Microfinance in Asia"
+        },
+        {
+            "number": "2nd",
+            "date": "October 16-18, 1989",
+            "host_country": "Korea",
+            "details": [
+                "Future Prospects of Microfinance",
+                "Role in Economic Development",
+                "Policy Changes and Microfinance"
+            ]
+        },
+        {
+            "number": "3rd",
+            "date": "November 17-21, 1990",
+            "host_country": "Malaysia",
+            "details": [
+                "Development of SMEs and the Role of Microfinance in the 90s"
+            ]
+        },
+        {
+            "number": "4th",
+            "date": "October 18-23, 1991",
+            "host_country": "Indonesia",
+            "details": [
+                "Improving Collection Strategies in Microfinance"
+            ]
+        },
+        {
+            "number": "5th",
+            "date": "November 15-20, 1992",
+            "host_country": "Thailand",
+            "details": "Microfinance and Economic Growth in Asia"
+        },
+        {
+            "number": "6th",
+            "date": "November 22-27, 1993",
+            "host_country": "Taiwan",
+            "details": "Strengthening the Microfinance System in Asia"
+        },
+        {
+            "number": "7th",
+            "date": "November 21-26, 1994",
+            "host_country": "Nepal",
+            "details": "Role of Microfinance in Nepal's Economic Development"
+        },
+        {
+            "number": "8th",
+            "date": "November 20-25, 1995",
+            "host_country": "Philippines",
+            "details": "Regional Cooperation in Microfinance"
+        },
+        {
+            "number": "9th",
+            "date": "October 12-17, 1996",
+            "host_country": "Japan",
+            "details": [
+                "Fostering SMEs through Microfinance"
+            ]
+        },
+        {
+            "number": "10th",
+            "date": "November 9-13, 1997",
+            "host_country": "Sri Lanka",
+            "details": "Microfinance Schemes for Small Industry Development"
+        },
+        {
+            "number": "11th",
+            "date": "December 20-25, 2024",
+            "host_country": "Nepal",
+            "details": "Empowering Financial Inclusion"
+        }
+    ]
+}
