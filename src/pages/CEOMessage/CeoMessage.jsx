@@ -1,7 +1,7 @@
 import React from "react";
 import logo from "../../assets/asian.png";
-import ceo from "../../assets/images/ceo.png";
-import chairman from "../../assets/images/chairman.png";
+import ceo from "../../assets/images/cnc.jpg";
+import chairman from "../../assets/images/pnc.jpg";
 import "../../css/animations.css";
 import Navbar from "../../components/Navbar";
 import Footer from "../../components/Footer";
