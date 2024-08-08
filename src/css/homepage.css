@@ -1,0 +1,57 @@
+@import url('https://fonts.googleapis.com/css2?family=Bubblegum+Sans&display=swap');
+.responsive-image {
+    position: relative;
+    overflow: hidden;
+}
+
+.responsive-image img {
+    object-fit: cover;
+}
+
+.responsive-image .overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background: rgba(0, 0, 0, 0.5);
+    color: white;
+    text-align: center;
+    padding: 1rem;
+}
+
+.responsive-image .overlay h1 {
+    font-size: 2rem;
+    font-weight: bold;
+    margin-bottom: 1rem;
+}
+
+.responsive-image .overlay p {
+    font-size: 1.25rem;
+}
+
+.date-info,
+.venue-info {
+    position: absolute;
+    bottom: 16px;
+    display: flex;
+    align-items: center;
+    color: white;
+    font-size: 1.25rem;
+}
+
+.date-info {
+    left: 16px;
+}
+
+.venue-info {
+    right: 16px;
+}
+
+.venue-info .icon {
+    margin-right: 8px;
+}
