@@ -14,7 +14,6 @@ import LoginPage from "./pages/LoginPage/LoginPage";
 import AdminLogin from "./pages/LoginPage/AdminLogin";
 import AdminRoutes from "./PrivateRoutes/AdminRoutes";
 import AdminDashboard from "./pages/adminDashboard/AdminDashboard";
-import ImportantNotice from "./pages/ImportantNotice/ImportantNotice";
 import BiographyGuidelines from "./pages/BiographyGuides/BiographyGuideLines";
 import Registrations from "./pages/Registration/Registrations";
 import ScrollToTop from "./ScrollToTop";
@@ -44,7 +43,6 @@ function App() {
         <Route path="/history" element={<History />} />{" "}
         <Route path="/register" element={<Registrations />} />{" "}
         <Route path="/login" element={<LoginPage />} />{" "}
-        <Route path="/important-info" element={<ImportantNotice />} />{" "}
         <Route path="/changepassword" element={<ChangePassword />} /> {""}{" "}
         <Route path="/maintenance" element={<UnderMaintenance />} /> {""}{" "}
         <Route
