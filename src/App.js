@@ -14,7 +14,6 @@ import LoginPage from "./pages/LoginPage/LoginPage";
 import AdminLogin from "./pages/LoginPage/AdminLogin";
 import AdminRoutes from "./PrivateRoutes/AdminRoutes";
 import AdminDashboard from "./pages/adminDashboard/AdminDashboard";
-import BiographyGuidelines from "./pages/BiographyGuides/BiographyGuideLines";
 import Registrations from "./pages/Registration/Registrations";
 import ScrollToTop from "./ScrollToTop";
 import UserRoutes from "./PrivateRoutes/UserRoutes";
@@ -45,10 +44,6 @@ function App() {
         <Route path="/login" element={<LoginPage />} />{" "}
         <Route path="/changepassword" element={<ChangePassword />} /> {""}{" "}
         <Route path="/maintenance" element={<UnderMaintenance />} /> {""}{" "}
-        <Route
-          path="/biography-instructions"
-          element={<BiographyGuidelines />}
-        />{" "}
         <Route path="/admin" element={<AdminLogin />} />{" "}
         {/* Admin Protected Routes */}{" "}
         <Route element={<AdminRoutes />}>
