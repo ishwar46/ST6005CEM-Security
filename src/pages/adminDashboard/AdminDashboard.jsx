@@ -8,6 +8,7 @@ import LogoutModal from "../../components/LogoutComponent";
 import ParticipantAttendance from "./Attendance";
 import AddSession from "./AddSession";
 import ViewSessions from "./ViewSessions";
+import LoginActivities from "./LoginActivities";
 
 const AdminDashboard = () => {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
@@ -402,9 +403,9 @@ const AdminDashboard = () => {
               </li>
               <li>
                 <button
-                  onClick={() => handleContainerChange("notification")}
+                  onClick={() => handleContainerChange("loginactivity")}
                   className={`w-[100%] flex items-center p-2 text-gray-900 rounded-r-lg hover:bg-blue-300 group ${
-                    activeContainer === "notification"
+                    activeContainer === "loginactivity"
                       ? "bg-blue-200 text-[#3051A0] border-l-4 border-[#3051A0]"
                       : ""
                   }`}
@@ -423,7 +424,7 @@ const AdminDashboard = () => {
                       />
                     </svg>
                   </span>
-                  <span className="ms-3 lg:block md:hidden">Notification</span>
+                  <span className="ms-3 lg:block md:hidden">Login Audit</span>
                 </button>
               </li>
               <li>
@@ -508,7 +509,7 @@ const AdminDashboard = () => {
           {activeContainer === "addevent" && <AddSession />}
           {activeContainer === "gallery" && <Gallery />}
           {activeContainer === "attendance" && <ParticipantAttendance />}
-          {/* {activeContainer === "notification" && <Notification />} */}
+          {activeContainer === "loginactivity" && <LoginActivities />}
           {activeContainer === "speaker" && <AddSpeaker />}
           {activeContainer === "queries" && <ViewSessions />}
         </div>
