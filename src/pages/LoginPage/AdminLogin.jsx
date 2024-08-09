@@ -12,6 +12,8 @@ const AdminLogin = () => {
   const [password, setPassword] = useState("");
   const [lockDuration, setLockDuration] = useState(null);
   const [remainingAttempts, setRemainingAttempts] = useState(null);
+  const [isLocked, setIsLocked] = useState(false);
+
   const navigate = useNavigate();
 
   const handleEmailChange = (e) => setEmail(e.target.value);
@@ -23,90 +25,120 @@ const AdminLogin = () => {
       const response = await adminLoginApi({ email, password });
       const res = response.data;
       if (res.success) {
-        toast.success(res.message);
+        toast.success("Logged in successfully!");
         localStorage.setItem("token", res.token);
         localStorage.setItem("user", JSON.stringify(res.admin));
         navigate("/admindashboard");
       } else {
-        toast.error(res.error);
-        setRemainingAttempts(res.lockDuration ? 0 : res.remainingAttempts);
-        setLockDuration(res.lockDuration);
+        toast.error(res.error || "Login failed");
+        if (res.lockDuration) {
+          setIsLocked(true);
+          setLockDuration(res.lockDuration);
+        } else if (res.remainingAttempts !== undefined) {
+          setRemainingAttempts(res.remainingAttempts);
+        }
       }
     } catch (err) {
       const errorMessage =
         err.response?.data?.error || err.message || "Internal server error";
       toast.error(errorMessage);
       if (err.response?.data) {
-        setRemainingAttempts(
-          err.response.data.lockDuration
-            ? 0
-            : err.response.data.remainingAttempts
-        );
-        setLockDuration(err.response.data.lockDuration);
+        if (err.response.data.lockDuration) {
+          setIsLocked(true);
+          setLockDuration(err.response.data.lockDuration);
+        } else {
+          setRemainingAttempts(err.response.data.remainingAttempts);
+        }
       }
     }
   };
 
+  // Countdown timer effect
   useEffect(() => {
-    let timer = null;
     if (lockDuration > 0) {
-      timer = setInterval(() => {
-        setLockDuration((prevDuration) => prevDuration - 1);
+      const timer = setInterval(() => {
+        setLockDuration((prev) => prev - 1);
       }, 1000);
+
+      return () => clearInterval(timer);
     } else if (lockDuration === 0) {
-      clearInterval(timer);
+      setIsLocked(false);
       setLockDuration(null);
     }
-    return () => clearInterval(timer);
   }, [lockDuration]);
 
   return (
     <>
-      <section className="bg-gradient-to-r from-green-400 to-blue-500 min-h-screen flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
-        <div className="max-w-md w-full space-y-8">
-          <div className="flex justify-center">
-            <img src={Logo} className="h-32 w-32" alt="ASIAN Logo" />
-          </div>
-          <div className="bg-white shadow-lg rounded-lg p-10 space-y-6">
-            <h2 className="text-center text-3xl font-extrabold text-gray-900">
-              Admin Login
-            </h2>
-            <form className="mt-8 space-y-6" onSubmit={handleSubmit}>
-              <input
-                id="email"
-                type="email"
-                required
-                className="appearance-none rounded-md relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-blue-500 focus:border-blue-500 focus:z-10 sm:text-sm"
-                placeholder="Email address"
-                value={email}
-                onChange={handleEmailChange}
-              />
-              <input
-                id="password"
-                type="password"
-                required
-                className="appearance-none rounded-md relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-blue-500 focus:border-blue-500 focus:z-10 sm:text-sm"
-                placeholder="Password"
-                value={password}
-                onChange={handlePasswordChange}
-              />
-              {remainingAttempts !== null && (
-                <p className="text-red-500 text-center">
-                  Attempts remaining: {remainingAttempts}
-                </p>
+      <section className="bg-gray-100 min-h-screen flex flex-col items-center justify-center">
+        <div className="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
+          <img src={Logo} className="h-[150px] mb-6" alt="ASIAN Logo" />
+
+          <div className="w-full bg-white rounded-lg shadow-lg sm:max-w-md xl:p-0">
+            <div className="p-8 space-y-6 sm:p-8">
+              <h1 className="text-2xl font-bold leading-tight tracking-tight text-gray-900 md:text-3xl text-center">
+                Admin Login
+              </h1>
+              <p className="text-center text-gray-500">
+                Please log in with your admin email and password.
+              </p>
+              {isLocked && (
+                <div className="text-center text-red-600 font-semibold">
+                  Your account is locked. Please try again in{" "}
+                  {Math.ceil(lockDuration / 60)} minutes and {lockDuration % 60}{" "}
+                  seconds.
+                </div>
               )}
-              {lockDuration !== null && (
-                <p className="text-red-500 text-center">
-                  Locked for {lockDuration} seconds
-                </p>
+              {remainingAttempts !== null && !isLocked && (
+                <div className="text-center text-yellow-600 font-semibold">
+                  {remainingAttempts} attempt
+                  {remainingAttempts !== 1 ? "s" : ""} remaining.
+                </div>
               )}
-              <button
-                type="submit"
-                className="group relative w-full flex justify-center py-3 px-4 border border-transparent text-lg font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
-              >
-                Sign in
-              </button>
-            </form>
+              <form className="space-y-4 md:space-y-6" onSubmit={handleSubmit}>
+                <div>
+                  <label
+                    htmlFor="email"
+                    className="block mb-2 text-lg font-medium text-gray-900"
+                  >
+                    Email Address
+                  </label>
+                  <input
+                    onChange={handleEmailChange}
+                    type="email"
+                    name="email"
+                    id="email"
+                    className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block w-full p-2.5"
+                    placeholder="Enter your email"
+                    required
+                  />
+                </div>
+                <div>
+                  <label
+                    htmlFor="password"
+                    className="block mb-2 text-lg font-medium text-gray-900"
+                  >
+                    Password
+                  </label>
+                  <input
+                    onChange={handlePasswordChange}
+                    type="password"
+                    name="password"
+                    id="password"
+                    placeholder="••••••••"
+                    className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block w-full p-2.5"
+                    required
+                  />
+                </div>
+
+                <button
+                  type="submit"
+                  className="w-full text-white bg-green-600 hover:bg-green-700 focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center"
+                  disabled={isLocked}
+                >
+                  Login
+                </button>
+              </form>
+            </div>
           </div>
         </div>
       </section>

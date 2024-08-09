@@ -16,8 +16,8 @@ const UserDashboardPage = () => {
 
   const {
     personalInformation,
-    dietaryRequirements,
-    accompanyingPerson,
+    dietaryRequirements = {},
+    accompanyingPerson = {},
     profilePicture,
   } = user;
 
@@ -25,6 +25,10 @@ const UserDashboardPage = () => {
     if (!firstName || !lastName) return "";
     return `${firstName.charAt(0)}${lastName.charAt(0)}`;
   };
+
+  if (!personalInformation) {
+    return <div>Error: Personal information is missing.</div>;
+  }
 
   return (
     <>
