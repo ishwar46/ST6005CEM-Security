@@ -2,8 +2,8 @@ import axios from "axios";
 
 // Axios instance configuration
 const Api = axios.create({
-  // baseURL: "http://localhost:5000",
-  baseURL: "https://asian-api.onrender.com/",
+  baseURL: "http://localhost:5500",
+  // baseURL: "https://asian-api.onrender.com/",
   withCredentials: true,
   headers: {
     "Content-Type": "application/json",
@@ -47,6 +47,24 @@ export const userLoginApi = (data) => Api.post("/api/users/userlogin", data);
 
 //------------------------------ Admin Apis -------------------------------
 export const adminLoginApi = (data) => Api.post("/api/admin/login", data);
+
+export const getLoginActivitiesApi = () => {
+  const config = {
+    headers: {
+      authorization: `Bearer ${localStorage.getItem("token")}`,
+    },
+  };
+  return Api.get("/api/admin/login-activities", config);
+};
+
+export const deleteLoginActivityApi = (id) => {
+  const config = {
+    headers: {
+      authorization: `Bearer ${localStorage.getItem("token")}`,
+    },
+  };
+  return Api.delete(`/api/admin/login-activities/${id}`, config);
+};
 
 //------------------------------ Change Password Apis -------------------------------
 export const changePasswordApi = (formData) =>
