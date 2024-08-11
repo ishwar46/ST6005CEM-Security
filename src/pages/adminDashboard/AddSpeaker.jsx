@@ -9,7 +9,7 @@ import {
 import toast from "react-hot-toast";
 
 const AddSpeaker = () => {
-  useDocumentTitle("Add Speakers - ACSIC Conference ");
+  useDocumentTitle("Add Speakers - ASIAN Conference ");
 
   const [speakers, setSpeakers] = useState([]);
   const [collapsed, setCollapsed] = useState({});

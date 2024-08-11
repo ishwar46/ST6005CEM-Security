@@ -11,7 +11,7 @@ import moment from "moment";
 import useDocumentTitle from "../../components/DocTitle";
 
 const ViewSessions = () => {
-  useDocumentTitle("View Sessions - ACSIC Conference ");
+  useDocumentTitle("View Sessions - ASIAN Conference ");
 
   const [runningSessions, setRunningSessions] = useState([]);
   const [upcomingSessions, setUpcomingSessions] = useState([]);

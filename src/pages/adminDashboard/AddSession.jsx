@@ -7,7 +7,7 @@ import useDocumentTitle from "../../components/DocTitle";
 initTWE({ Input });
 
 const AddSession = () => {
-  useDocumentTitle("Add Sessions - ACSIC Conference ");
+  useDocumentTitle("Add Sessions - ASIAN Conference ");
   const [speakers, setSpeakers] = useState([]);
 
   const [formData, setFormData] = useState({

@@ -272,7 +272,7 @@ const UserTable = () => {
     const wb = XLSX.utils.book_new();
     XLSX.utils.book_append_sheet(wb, ws, "Users");
 
-    XLSX.writeFile(wb, "acsic_participant_details.xlsx");
+    XLSX.writeFile(wb, "asian_participant_details.xlsx");
   };
 
   const getStatusBadge = (status) => {

@@ -4,7 +4,7 @@ import { getAllUsersApi, getAllSpeakersApi } from "../../apis/Api";
 import useDocumentTitle from "../../components/DocTitle";
 
 const MainDashboard = () => {
-  useDocumentTitle("Admin Dashboard - ACSIC Conference ");
+  useDocumentTitle("Admin Dashboard - ASIAN Conference ");
   const [userCount, setUserCount] = useState(0);
   const [pendingUserCount, setPendingUserCount] = useState(0);
   const [speakerCount, setSpeakerCount] = useState(0);
