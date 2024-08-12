@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from "react";
 import { getAllNotificationsApi, decryptNotificationApi } from "../../apis/Api";
+import { io } from "socket.io-client";
 import {
   LockClosedIcon,
   LockOpenIcon,
   KeyIcon,
 } from "@heroicons/react/24/outline";
-import { io } from "socket.io-client";
 
 const Notifications = () => {
   const [notifications, setNotifications] = useState([]);
@@ -13,6 +13,10 @@ const Notifications = () => {
   const [decryptedMessages, setDecryptedMessages] = useState({});
 
   useEffect(() => {
+    if (Notification.permission !== "granted") {
+      Notification.requestPermission();
+    }
+
     getAllNotificationsApi()
       .then((response) => {
         setNotifications(response.data);
@@ -23,12 +27,17 @@ const Notifications = () => {
 
     const socket = io("http://localhost:5500");
 
-    // Listen for new notifications
     socket.on("receiveNotification", (newNotification) => {
       setNotifications((prevNotifications) => [
         newNotification,
         ...prevNotifications,
       ]);
+
+      if (Notification.permission === "granted") {
+        new Notification("New Notification", {
+          body: newNotification.title,
+        });
+      }
     });
 
     // Cleanup on component unmount
