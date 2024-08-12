@@ -22,6 +22,7 @@ import ParticipantAttendance from "./pages/adminDashboard/Attendance.jsx";
 import UnderMaintenance from "./pages/UnderMaintainance/UnderMaintainance.jsx";
 import AboutASIAN from "./pages/AboutASIAN/Aboutsummit.jsx";
 import SummitMembers from "./pages/Members/Members";
+import Notifications from "./pages/Notifications/Notifications.jsx";
 
 function App() {
   return (
@@ -43,6 +44,7 @@ function App() {
         <Route path="/changepassword" element={<ChangePassword />} /> {""}{" "}
         <Route path="/maintenance" element={<UnderMaintenance />} /> {""}{" "}
         <Route path="/admin" element={<AdminLogin />} />{" "}
+        <Route path="/notifications" element={<Notifications />} />{" "}
         {/* Admin Protected Routes */}{" "}
         <Route element={<AdminRoutes />}>
           <Route path="/admindashboard" element={<AdminDashboard />} />{" "}

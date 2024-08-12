@@ -196,3 +196,25 @@ export const getSessionAttendaceApi = (sessionId) => {
   };
   return Api.get(`/api/season/getAllAttendance/${sessionId}`, config);
 };
+
+// Fetch all notifications
+export const getAllNotificationsApi = () => {
+  return Api.get("/api/notifications/all", {
+    headers: {
+      authorization: `Bearer ${localStorage.getItem("token")}`,
+    },
+  });
+};
+
+// Decrypt a specific notification
+export const decryptNotificationApi = (id, key) => {
+  return Api.post(
+    "/api/notifications/decrypt",
+    { id, key },
+    {
+      headers: {
+        authorization: `Bearer ${localStorage.getItem("token")}`,
+      },
+    }
+  );
+};
