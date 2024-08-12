@@ -81,7 +81,9 @@ const AddSession = () => {
 
   return (
     <div className="min-h-screen ">
-      <h2 className="text-2xl font-bold text-start mb-4 text-black mt-2">Add Session</h2>
+      <h2 className="text-2xl font-bold text-start mb-4 text-black mt-2">
+        Add Session
+      </h2>
       <div className="w-full max bg-white p-5 rounded-lg shadow-lg mb-10">
         <form onSubmit={handleSubmit} className="space-y-6">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
