@@ -218,3 +218,12 @@ export const decryptNotificationApi = (id, key) => {
     }
   );
 };
+
+// Send a global notification
+export const sendGlobalNotificationApi = (data) => {
+  return Api.post("/api/notifications/sendGlobal", data, {
+    headers: {
+      authorization: `Bearer ${localStorage.getItem("token")}`,
+    },
+  });
+};
