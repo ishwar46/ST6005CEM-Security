@@ -23,7 +23,7 @@ const SendNotifications = () => {
       const res = await getAllNotificationsApi();
       const decryptedNotifications = await Promise.all(
         res.data.map(async (notification) => {
-          const key = "sec123"; // Example key, adjust as needed
+          const key = "sec123";
           const decryptedRes = await decryptNotificationApi(
             notification._id,
             key
@@ -34,7 +34,6 @@ const SendNotifications = () => {
           };
         })
       );
-      // Sort notifications by createdAt descending to show the newest at the top
       decryptedNotifications.sort(
         (a, b) => new Date(b.createdAt) - new Date(a.createdAt)
       );
