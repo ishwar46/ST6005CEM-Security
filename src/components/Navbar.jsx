@@ -1,6 +1,11 @@
 import React, { useState, useEffect } from "react";
 import Logo from "../assets/asian.png";
 import { Link, useLocation, useNavigate } from "react-router-dom";
+import {
+  ArrowUpCircleIcon,
+  BellIcon,
+  PowerIcon,
+} from "@heroicons/react/24/outline";
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -56,6 +61,10 @@ const Navbar = () => {
     setUsername("Guest");
     setIsAdmin(false);
     navigate("/homepage");
+  };
+
+  const handleNotificationClick = () => {
+    navigate("/notifications"); // Navigate to the notifications page
   };
 
   return (
@@ -277,6 +286,14 @@ const Navbar = () => {
                 Gallery
               </Link>
             </li>
+            <li className="flex items-center">
+              <button
+                onClick={handleNotificationClick}
+                className="text-gray-500 hover:text-green-500"
+              >
+                <BellIcon className="h-6 w-6" aria-hidden="true" />
+              </button>
+            </li>
             <li>
               <Link
                 exact="true"
@@ -291,15 +308,20 @@ const Navbar = () => {
               {isLoggedIn ? (
                 <button
                   onClick={handleLogout}
-                  className="px-4 py-2 bg-red-500 text-white rounded hover:bg-green-600 block text-center"
+                  className="flex items-center px-4 py-2 bg-red-500 text-white rounded hover:bg-green-600 block text-center"
                 >
+                  <PowerIcon className="h-5 w-5 mr-2" aria-hidden="true" />
                   Logout
                 </button>
               ) : (
                 <button
                   onClick={toggleLoginDropdown}
-                  className="px-4 py-2 bg-green-900 text-white rounded hover:bg-green-600 block text-center"
+                  className="flex items-center px-4 py-2 bg-green-900 text-white rounded hover:bg-green-600 block text-center"
                 >
+                  <ArrowUpCircleIcon
+                    className="h-5 w-5 mr-2"
+                    aria-hidden="true"
+                  />
                   Login
                 </button>
               )}
